@@ -9,6 +9,7 @@ date: 08-31-2020
 output:
   distill::distill_article:
     self_contained: false
+bibliography: references.bib
 ---
 
 
@@ -92,7 +93,7 @@ The overall cases cross time in Italy as displayed in the **Figure \@ref(fig:sum
 
 
 
-```{r summary,fig.width=10,fig.height=5,fig.cap="COVID-19 cases cross time"}
+```{r summary,fig.cap="COVID-19 cases cross time"}
 italy_total%>%
   mutate(month=month(date))%>%
   select(month,cumulative_positive_cases,recovered,death,cumulative_cases)%>%
@@ -132,7 +133,7 @@ out
 In the **Table \@ref(tab:statistic)**, the summary statistics is constructed by daily positive case which is separated in region and total data. In  the region data, the minimum of daily positive cases is -5339 while the minimum of total data is -6939 but it seems to close to region. The negative value in the summary statistic means the number of people are recovery from the hospital and home confinement. However, the median of region daily positive case is 0,indicating that the middle value in daily positive case compared with each region is 0. 
 
 
-```{r statistic,fig.width=8,fig.height=7,fig.cap="Daily positive case summary statistic"}
+```{r statistic,fig.cap="Daily positive case summary statistic"}
 
 summary_function <- function(x,daily){
   summary(daily[x]) %>% 
@@ -174,3 +175,6 @@ rbind(region,total)%>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
+# Acknowlegments
+
+I would like to thank all the contributors to the following R package: @tidyverse, @here, @dplyr,@DT,@covid19italy,@sparkline,@htmlwidgets,@formattable,@kableExtra,@lubridate.
