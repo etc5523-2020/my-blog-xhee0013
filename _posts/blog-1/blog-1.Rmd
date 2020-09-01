@@ -29,6 +29,9 @@ library(htmltools)
 ```
 
 
+```{r italy-picture, fig.cap="Italy response to coronavirus. Source from:[Harvard Business Review](https://hbr.org/2020/03/lessons-from-italys-response-to-coronavirus)"}
+knitr::include_graphics('image/italy.jpg')
+```
 
 Italy is experienced the serious coronavirus disaster, especially the out-of-control in March. In this post, I am going to analyze the situation in this epidemic in Italy.\
 
@@ -93,7 +96,7 @@ The overall cases cross time in Italy as displayed in the **Figure \@ref(fig:sum
 
 
 
-```{r summary,fig.cap="COVID-19 cases cross time"}
+```{r summary,fig.width=10,fig.height=5,fig.cap="COVID-19 cases cross time"}
 italy_total%>%
   mutate(month=month(date))%>%
   select(month,cumulative_positive_cases,recovered,death,cumulative_cases)%>%
@@ -118,6 +121,28 @@ active_sparkline<-italy_total%>%
 
 italy_summary<-left_join(italy,active_sparkline,by="Month")
 
+italy_summary<-left_join(italy,active_sparkline,by="Month")
+
+italy_summary%>%
+  mutate(`Recovery rate`=format(`Recovery rate`,digits=2,nsmall = 2),
+         `Death rate`=format(`Death rate`,digits=2,nsmall = 2))->italy_summary
+italy_summary$`Recovery rate`=paste(italy_summary$`Recovery rate`, "%")
+italy_summary$`Death rate`=paste(italy_summary$`Death rate`, "%")
+italy_summary%>%datatable(escape = FALSE,
+          options = list(paging = FALSE,
+                         dom = "t",
+                         fnDrawCallback = htmlwidgets::JS(
+                           '
+function(){
+  HTMLWidgets.staticRender();
+}
+'
+                         ))) %>% 
+  spk_add_deps()
+  
+```
+
+```{r formattable, eval=FALSE}
 out = as.htmlwidget(formattable(italy_summary,
             list(`Active` = color_bar("#FA614B"), 
                  `Death rate` = formatter("span", 
@@ -129,6 +154,7 @@ out = as.htmlwidget(formattable(italy_summary,
 out$dependencies = c(out$dependencies, htmlwidgets:::widget_dependencies("sparkline", "sparkline"))
 out
 ```
+
 
 In the **Table \@ref(tab:statistic)**, the summary statistics is constructed by daily positive case which is separated in region and total data. In  the region data, the minimum of daily positive cases is -5339 while the minimum of total data is -6939 but it seems to close to region. The negative value in the summary statistic means the number of people are recovery from the hospital and home confinement. However, the median of region daily positive case is 0,indicating that the middle value in daily positive case compared with each region is 0. 
 
