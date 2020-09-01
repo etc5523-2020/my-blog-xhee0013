@@ -11,13 +11,38 @@ output:
     self_contained: false
 ---
 
+
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-
-# Learn more about creating blogs with Distill at:
-# https://rstudio.github.io/distill/blog.html
-
+knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE,fig.align="center")
+library(covid19italy)
+library(dplyr)
+library(tidyverse)
+library(lubridate)
+library(DT)
+library(sparkline)
+library(kableExtra)
+library(formattable)
+library(htmlwidgets)
+library(htmltools)
 ```
 
+
+
+Italy is experienced the serious coronavirus disaster, especially the out-of-control in March. In this post, I am going to analyze the situation in this epidemic in Italy.\
+
+# Data description
+
+There are three data sets used on this analysis, and the cleaned data is obtained from [GitHub RamiKrispin](https://github.com/RamiKrispin/covid19Italy). In addition, the `covid19italy` package is created by Rami Krispin @covid19italy as well which is provided a tidy format dataset of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) pandemic outbreak in Italy.\
+
+The three datasets are shown as below:\
+
+-  **italy_total** - daily summary of the outbreak on the national level\
+
+-  **italy_region**- daily summary of the outbreak on the region level\
+
+-  **italy_province** - daily summary of the outbreak on the province level\
+
+These three datasets is collected the information from 2020-02-24 until now, updating daily by daily data information. Overall, Italy has the *265,409* total case of COVID-19 until now. \
 
 
