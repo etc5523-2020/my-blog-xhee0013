@@ -86,3 +86,91 @@ DT::datatable(region_count, options = list(pageLength = 7),filter = 'top')%>%
     backgroundPosition = 'center'
   ) 
 ```
+
+
+The overall cases cross time in Italy as displayed in the **Figure \@ref(fig:summary)**. Overall there are 265,409 confirmed cases, 206,554 recovered case and 35,463 deaths case. The active cases in Italy have a massive upsurge which are shown in the February and March, marking the biggest coronavirus outbreak outside Asia. In addition, the death rate and recovery rate have soared in March compared with February and after that the death rate has stabilized at 14%. In April, the active cases continue to rise sharply and after a peak then flat out at the end of this month. Started from May to July, Italian government took a series of measures such as the social distancing and travel restriction to significantly ease the spread of the coronavirus @gatto2020spread. Because of these strict measures, the active cases have gradually decreased as well as the recovery rate have increased rapidly after April as many patients have been cured. However, from the line graph in August, the active cases represent a gradually growth, the reason may be raised by holidays and night life for causing people to gather in numbers from some experts explained. Due to the active case has rise significantly again, the recovery rate has drop slightly as well.
+
+
+
+```{r summary,fig.width=10,fig.height=5,fig.cap="COVID-19 cases cross time"}
+italy_total%>%
+  mutate(month=month(date))%>%
+  select(month,cumulative_positive_cases,recovered,death,cumulative_cases)%>%
+  group_by(month)%>%
+  filter(cumulative_cases==max(cumulative_cases))%>%
+  rename(
+    Month=month,
+    Active = cumulative_positive_cases,
+    `Total case`=cumulative_cases,
+    Recovered=recovered,
+    Death=death
+    )%>%
+  mutate(`Recovery rate`=(Recovered/`Total case`)*100,
+    `Death rate`=(Death/`Total case`)*100)->italy
+
+active_sparkline<-italy_total%>%
+  mutate(year = year(date),month=month(date))%>%
+  select(month,cumulative_positive_cases)%>%
+  rename(Month=month)%>%
+  group_by(Month)%>%
+  summarise(`Active case` = spk_chr(cumulative_positive_cases, type = "line")) 
+
+italy_summary<-left_join(italy,active_sparkline,by="Month")
+
+out = as.htmlwidget(formattable(italy_summary,
+            list(`Active` = color_bar("#FA614B"), 
+                 `Death rate` = formatter("span", 
+                                          x ~ percent(x / 100),
+                                          style = x ~ style(color = ifelse(x, 3, "red"))),
+                 `Recovery rate` = formatter("span", 
+                                             x ~ percent(x / 100),
+                                             style = x ~ style(color = ifelse(x, 3, "red"))))))
+out$dependencies = c(out$dependencies, htmlwidgets:::widget_dependencies("sparkline", "sparkline"))
+out
+```
+
+In the **Table \@ref(tab:statistic)**, the summary statistics is constructed by daily positive case which is separated in region and total data. In  the region data, the minimum of daily positive cases is -5339 while the minimum of total data is -6939 but it seems to close to region. The negative value in the summary statistic means the number of people are recovery from the hospital and home confinement. However, the median of region daily positive case is 0,indicating that the middle value in daily positive case compared with each region is 0. 
+
+
+```{r statistic,fig.width=8,fig.height=7,fig.cap="Daily positive case summary statistic"}
+
+summary_function <- function(x,daily){
+  summary(daily[x]) %>% 
+  as.data.frame() %>% 
+  separate(col = Freq, into = c("stat","value"),sep = ":") %>% 
+  pivot_wider(names_from = "stat", values_from = "value")
+}
+
+bind_rows(summary_function(7,italy_total)) %>% 
+  select(-Var1) %>% 
+  janitor::clean_names() %>% 
+  mutate(var2 = recode(var2, 
+                       "daily_positive_cases" = "Total"),
+         min=format(as.numeric(min),nsmall =   1),
+         x1st_qu=format(as.numeric(x1st_qu),nsmall = 1),
+         median=format(as.numeric(median),nsmall =  1),
+         mean=round(as.numeric(mean),digits=1),
+         x3rd_qu=round(as.numeric(x3rd_qu),digits = 1),
+         max=format(as.numeric(max),nsmall =  1)) ->total
+
+bind_rows(summary_function(11,italy_region)) %>% 
+  select(-Var1) %>% 
+  janitor::clean_names() %>% 
+  mutate(var2 = recode(var2, 
+                       "daily_positive_cases" = "Region"),
+         min=format(as.numeric(min),nsmall =   1),
+         x1st_qu=format(as.numeric(x1st_qu),nsmall = 1),
+         median=format(as.numeric(median),nsmall =  1),
+         mean=round(as.numeric(mean),digits=1),
+         x3rd_qu=round(as.numeric(x3rd_qu),digits = 1),
+         max=format(as.numeric(max),nsmall =  1)) ->region
+
+
+rbind(region,total)%>%
+ kable(col.names = c("Daily postive case", "Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max."),
+       align = "lrrrrrr",
+       booktabs=TRUE,
+       caption = "Daily positive case summary statistic")%>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
