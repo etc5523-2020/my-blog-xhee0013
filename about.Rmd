@@ -1,5 +1,5 @@
 ---
-title: "About this blog"
+title: "About Me"
 description: |
   Some additional details about the blog
 ---
@@ -7,3 +7,13 @@ description: |
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+Hello! This is XITONG HE's blog, and this is a bit information about me.
+
+I am studying for business analytics at Monash university as a graduate student. I was studied the Actuarial Science in my bachelor degree which makes me love mathematics. I am interested in machine learning and data analytics.
+
+This blog I created for sharing the information which related to how the data is connected with our lives. I will discuss some questions in this blog by using the Rstudio as my mainly analysis tool.
+
+If you have some interesting topic or want to share your opinions to you, please sent me an email: karen.xt.he@gmail.com.
+
+Hope you can enjoy this blog!

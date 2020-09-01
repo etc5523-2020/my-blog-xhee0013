@@ -1,18 +1,18 @@
 [
   {
-    "path": "posts/welcome/",
-    "title": "Welcome to My Blog",
-    "description": "Welcome to our new blog, My Blog. We hope you enjoy \nreading what we have to say!",
+    "path": "posts/blog-1/",
+    "title": "COVID-19 Italy",
+    "description": "This blog post explores the current situation of COVID-19 in Italy.",
     "author": [
       {
-        "name": "Nora Jones",
-        "url": "https://example.com/norajones"
+        "name": "XITONG HE",
+        "url": {}
       }
     ],
     "date": "2020-08-31",
     "categories": [],
     "preview": {},
-    "last_modified": "2020-08-31T10:38:39+10:00",
+    "last_modified": "2020-09-01T19:55:32+10:00",
     "input_file": {}
   }
 ]
