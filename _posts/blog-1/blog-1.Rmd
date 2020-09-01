@@ -45,4 +45,44 @@ The three datasets are shown as below:\
 
 These three datasets is collected the information from 2020-02-24 until now, updating daily by daily data information. Overall, Italy has the *265,409* total case of COVID-19 until now. \
 
+# Analyse in Italy
 
+**Figure \@ref(fig:region-table)** shows the number of active, recovered,death and total case in each region in Italy from 2020-02-24 until now. Lombardia has the most of cases in all attributes and the death case are more than 10,000 which is almost the twice of Piemonte. The reason for this phenomenon with highest death in Lombardia due to the possible delayed public health response, high urban density and considerable elderly population which is difficult to control transmission between asymptomatic individuals at the community level so it makes the situation worst than other regions @odone2020covid. And Basilicata has the less cases in all 21 regions,which has been announced early to the travelers who has to pre-register by filling out a designed form which shows where they will be staying and when will they depart, as part of efforts to halt the spread of the Coronavirus pandemic (COVID-19).\
+
+
+```{r read-data}
+italy_region<-read.csv(here::here("data/italy_region.csv"))
+italy_province<-read.csv(here::here("data/italy_province.csv"))
+italy_total<-read.csv(here::here("data/italy_total.csv"))
+```
+
+
+```{r region-wrangling-data}
+
+
+region_case<-italy_region %>% 
+  filter(date == max(date)) %>% 
+  select(region_name, cumulative_positive_cases, recovered, death, cumulative_cases) %>%
+  arrange(-cumulative_positive_cases) %>%
+  mutate(region = factor(region_name, levels = region_name))->region_case
+#sorted <- region_case[order(region_case$region, decreasing= TRUE),]
+italy_region %>% 
+  filter(date == max(date)) %>% 
+  select(region_name, cumulative_positive_cases, recovered, death,cumulative_cases)%>% rename(
+    Region = region_name,
+    Active = cumulative_positive_cases,
+    `Total case`=cumulative_cases
+    )->region_count
+```
+
+```{r region-table,fig.cap="COVID-19 case in different region in Italy "}
+
+DT::datatable(region_count, options = list(pageLength = 7),filter = 'top')%>%
+    formatStyle(
+    'death',
+    background = styleColorBar(region_case$death, 'steelblue'),
+    backgroundSize = '98% 88%',
+    backgroundRepeat = 'no-repeat',
+    backgroundPosition = 'center'
+  ) 
+```
