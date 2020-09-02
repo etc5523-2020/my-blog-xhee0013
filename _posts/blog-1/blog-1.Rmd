@@ -33,8 +33,29 @@ library(htmltools)
 knitr::include_graphics('image/italy.jpg')
 ```
 
-Italy is experienced the serious coronavirus disaster, especially the out-of-control in March. In this post, I am going to analyze the situation in this epidemic in Italy.\
+Coronavirus disease (COVID-19) is an infectious disease and has been become a pandemic in the world. Italy has experienced the COVID-19 virus outbreak, especially for March, the situation was out-of-control. In this post, I am going to analyze the case situation for this epidemic in Italy.\
 
+
+```{r read-data}
+italy_region<-read.csv(here::here("data/italy_region.csv"))
+italy_province<-read.csv(here::here("data/italy_province.csv"))
+italy_total<-read.csv(here::here("data/italy_total.csv"))
+
+italy_total%>%
+  mutate(month=month(date))%>%
+  select(month,cumulative_positive_cases,recovered,death,cumulative_cases)%>%
+  group_by(month)%>%
+  filter(cumulative_cases==max(cumulative_cases))%>%
+  rename(
+    Month=month,
+    Active = cumulative_positive_cases,
+    Total=cumulative_cases,
+    Recovered=recovered,
+    Death=death
+    )%>%
+  mutate(`Recovery rate`=(Recovered/Total)*100,
+    `Death rate`=(Death/Total)*100)->italy
+```
 # Data description
 
 There are three data sets used on this analysis, and the cleaned data is obtained from [GitHub RamiKrispin](https://github.com/RamiKrispin/covid19Italy). In addition, the `covid19italy` package is created by Rami Krispin @covid19italy as well which is provided a tidy format dataset of the 2019 Novel Coronavirus COVID-19 (2019-nCoV) pandemic outbreak in Italy.\
@@ -47,29 +68,12 @@ The three datasets are shown as below:\
 
 -  **italy_province** - daily summary of the outbreak on the province level\
 
-These three datasets is collected the information from 2020-02-24 until now, updating daily by daily data information. Overall, Italy has the *265,409* total case of COVID-19 until now. \
+These three datasets is collected the information from 2020-02-24 until now, updating daily data information. Overall, Italy has the `r max(italy$Total)` total case of COVID-19 until now. \
 
-# Analyse in Italy
-
-**Figure \@ref(fig:region-table)** shows the number of active, recovered,death and total case in each region in Italy from 2020-02-24 until now. Lombardia has the most of cases in all attributes and the death case are more than 10,000 which is almost the twice of Piemonte. The reason for this phenomenon with highest death in Lombardia due to the possible delayed public health response, high urban density and considerable elderly population which is difficult to control transmission between asymptomatic individuals at the community level so it makes the situation worst than other regions @odone2020covid. And Basilicata has the less cases in all 21 regions,which has been announced early to the travelers who has to pre-register by filling out a designed form which shows where they will be staying and when will they depart, as part of efforts to halt the spread of the Coronavirus pandemic (COVID-19).\
-
-
-```{r read-data}
-italy_region<-read.csv(here::here("data/italy_region.csv"))
-italy_province<-read.csv(here::here("data/italy_province.csv"))
-italy_total<-read.csv(here::here("data/italy_total.csv"))
-```
+# Analyse 
 
 
 ```{r region-wrangling-data}
-
-
-region_case<-italy_region %>% 
-  filter(date == max(date)) %>% 
-  select(region_name, cumulative_positive_cases, recovered, death, cumulative_cases) %>%
-  arrange(-cumulative_positive_cases) %>%
-  mutate(region = factor(region_name, levels = region_name))->region_case
-#sorted <- region_case[order(region_case$region, decreasing= TRUE),]
 italy_region %>% 
   filter(date == max(date)) %>% 
   select(region_name, cumulative_positive_cases, recovered, death,cumulative_cases)%>% rename(
@@ -84,33 +88,17 @@ italy_region %>%
 DT::datatable(region_count, options = list(pageLength = 7),filter = 'top')%>%
     formatStyle(
     'death',
-    background = styleColorBar(region_case$death, 'steelblue'),
+    background = styleColorBar(region_count$death, 'steelblue'),
     backgroundSize = '98% 88%',
     backgroundRepeat = 'no-repeat',
     backgroundPosition = 'center'
   ) 
 ```
 
-
-The overall cases cross time in Italy as displayed in the **Figure \@ref(fig:summary)**. Overall there are 265,409 confirmed cases, 206,554 recovered case and 35,463 deaths case. The active cases in Italy have a massive upsurge which are shown in the February and March, marking the biggest coronavirus outbreak outside Asia. In addition, the death rate and recovery rate have soared in March compared with February and after that the death rate has stabilized at 14%. In April, the active cases continue to rise sharply and after a peak then flat out at the end of this month. Started from May to July, Italian government took a series of measures such as the social distancing and travel restriction to significantly ease the spread of the coronavirus @gatto2020spread. Because of these strict measures, the active cases have gradually decreased as well as the recovery rate have increased rapidly after April as many patients have been cured. However, from the line graph in August, the active cases represent a gradually growth, the reason may be raised by holidays and night life for causing people to gather in numbers from some experts explained. Due to the active case has rise significantly again, the recovery rate has drop slightly as well.
-
+**Figure \@ref(fig:region-table)** shows the number of active, recovered, death and total case in each region in Italy from 2020-02-24 until now. By interacting the table, Lombardia has the most of cases in all attributes and the death case are more than 10,000 which is almost the twice of Piemonte. The reason for this phenomenon with highest death in Lombardia due to the possible delayed public health response, high urban density and considerable elderly population which is difficult to control transmission between asymptomatic individuals at the community level so it makes the situation worst than other regions @odone2020covid. And Basilicata has the less cases in all 21 regions,which has been announced early to the travelers who has to pre-register by filling out a designed form which shows where they will be staying and when will they depart, as part of efforts to halt the spread of the Coronavirus pandemic (COVID-19).\
 
 
 ```{r summary,fig.width=10,fig.height=5,fig.cap="COVID-19 cases cross time"}
-italy_total%>%
-  mutate(month=month(date))%>%
-  select(month,cumulative_positive_cases,recovered,death,cumulative_cases)%>%
-  group_by(month)%>%
-  filter(cumulative_cases==max(cumulative_cases))%>%
-  rename(
-    Month=month,
-    Active = cumulative_positive_cases,
-    `Total case`=cumulative_cases,
-    Recovered=recovered,
-    Death=death
-    )%>%
-  mutate(`Recovery rate`=(Recovered/`Total case`)*100,
-    `Death rate`=(Death/`Total case`)*100)->italy
 
 active_sparkline<-italy_total%>%
   mutate(year = year(date),month=month(date))%>%
@@ -142,22 +130,9 @@ function(){
   
 ```
 
-```{r formattable, eval=FALSE}
-out = as.htmlwidget(formattable(italy_summary,
-            list(`Active` = color_bar("#FA614B"), 
-                 `Death rate` = formatter("span", 
-                                          x ~ percent(x / 100),
-                                          style = x ~ style(color = ifelse(x, 3, "red"))),
-                 `Recovery rate` = formatter("span", 
-                                             x ~ percent(x / 100),
-                                             style = x ~ style(color = ifelse(x, 3, "red"))))))
-out$dependencies = c(out$dependencies, htmlwidgets:::widget_dependencies("sparkline", "sparkline"))
-out
-```
+The overall cases cross time in Italy as displayed in the **Figure \@ref(fig:summary)**. In general, there are `r max(italy$Total)`  confirmed cases, `r max(italy$Recovered)` recovered case and `r max(italy$Death)` deaths case. The active cases in Italy have a massive upsurge which are shown in the February and March, marking the biggest coronavirus outbreak outside Asia. In addition, the death rate and recovery rate have soared in March compared with February and after that the death rate has stabilized at 14%. In April, the active cases continue to rise sharply and after a peak then flat out at the end of this month. Started from May to July, Italian government took a series of measures such as the social distancing and travel restriction to significantly ease the spread of the coronavirus @gatto2020spread. Because of these strict measures, the active cases have gradually decreased as well as the recovery rate have increased rapidly after April as many patients have been cured. However, from the line graph in August, the active cases represent a gradually growth, the reason may be raised by holidays and night life for causing people to gather in numbers from some experts explained. Due to the active case has rise significantly again, the recovery rate has drop slightly as well.\
 
-
-In the **Table \@ref(tab:statistic)**, the summary statistics is constructed by daily positive case which is separated in region and total data. In  the region data, the minimum of daily positive cases is -5339 while the minimum of total data is -6939 but it seems to close to region. The negative value in the summary statistic means the number of people are recovery from the hospital and home confinement. However, the median of region daily positive case is 0,indicating that the middle value in daily positive case compared with each region is 0. 
-
+<br/>
 
 ```{r statistic,fig.cap="Daily positive case summary statistic"}
 
@@ -192,6 +167,12 @@ bind_rows(summary_function(11,italy_region)) %>%
          x3rd_qu=round(as.numeric(x3rd_qu),digits = 1),
          max=format(as.numeric(max),nsmall =  1)) ->region
 
+region$min%>%
+  as.numeric()->min_region
+total$min%>%
+  as.numeric()->min_total
+region$median%>%
+  as.numeric()->median
 
 rbind(region,total)%>%
  kable(col.names = c("Daily postive case", "Min.", "1st Qu.", "Median", "Mean", "3rd Qu.", "Max."),
@@ -200,6 +181,28 @@ rbind(region,total)%>%
        caption = "Daily positive case summary statistic")%>%
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
+
+
+In the **Table \@ref(tab:statistic)**, the summary statistics is constructed by daily positive case which is separated in region and total data. In  the region data, the minimum of daily positive cases is `r min_region` while the minimum of total data is `r min_total` but it seems to close to region. The negative value in the summary statistic means the number of people are recovery from the hospital and home confinement. However, the median of region daily positive case is `r median`,indicating that the middle value in daily positive case compared with each region is `r median`.\
+
+
+
+*Note:Data updated to 03/09/2020 *
+
+
+```{r formattable, eval=FALSE}
+out = as.htmlwidget(formattable(italy_summary,
+            list(`Active` = color_bar("#FA614B"), 
+                 `Death rate` = formatter("span", 
+                                          x ~ percent(x / 100),
+                                          style = x ~ style(color = ifelse(x, 3, "red"))),
+                 `Recovery rate` = formatter("span", 
+                                             x ~ percent(x / 100),
+                                             style = x ~ style(color = ifelse(x, 3, "red"))))))
+out$dependencies = c(out$dependencies, htmlwidgets:::widget_dependencies("sparkline", "sparkline"))
+out
+```
+
 
 # Acknowlegments
 
