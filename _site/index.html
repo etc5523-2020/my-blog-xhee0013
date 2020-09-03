@@ -1269,8 +1269,38 @@
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <style type="text/css">
+  
+  .distill-site-nav {
+    background-color: #7091a0;
+    font-size: 15px;
+    font-weight: 300;
+  }
+  
+  html, body, p {
+  
+    font-weight: 200;
+    line-height: 1.7;
+    font-size: 1.0em;
+    text-align:justify;
+    color:#161111;
+    font-style: normal;
+  
+  }
+  
+  .figure .caption{
+    font-weight: 200;
+    line-height: 1.7;
+    font-size: 1.0em;
+    text-align:center;
+    font-style: normal;
+  
+  }
+  
+  </style>
   <!--/radix_placeholder_site_in_header-->
 
+  <link rel="stylesheet" href="styles.css" type="text/css"/>
 
 </head>
 
@@ -1616,11 +1646,11 @@ function init_posts_list() {
 
 
 
-<div class="posts-container posts-apply-limit l-page">
+<div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption">Blog Posts</h1>
 <a href="posts/blog-1/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":[]}</script>
+<script class="post-metadata" type="text/json">{"categories":["COVID-19"]}</script>
 <div class="metadata">
 <div class="publishedDate">Sept. 4, 2020</div>
 </div>
@@ -1632,6 +1662,17 @@ function init_posts_list() {
 <p>This blog post explores the current situation of COVID-19 in Italy.</p>
 </div>
 </a>
+</div>
+<div class="posts-sidebar">
+<div class="sidebar-section categories">
+<h3>Categories</h3>
+<ul>
+<li>
+<a href="#COVID-19">COVID-19</a>
+<span class="category-count">(1)</span>
+</li>
+</ul>
+</div>
 </div>
 <div class="posts-more">
 <a href="#">More articles &raquo;</a>
