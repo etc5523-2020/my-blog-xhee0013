@@ -10,9 +10,11 @@
       }
     ],
     "date": "2020-09-04",
-    "categories": [],
+    "categories": [
+      "COVID-19"
+    ],
     "preview": "posts/blog-1/image/italy.jpg",
-    "last_modified": "2020-09-03T10:22:16+10:00",
+    "last_modified": "2020-09-03T17:27:46+10:00",
     "input_file": {}
   }
 ]
