@@ -64,6 +64,83 @@ germany <- coronavirus %>%
 ```
 
 
+## Analyse in Germany
+
+### Case distribution by Region
+ 
+
+**Figure \@ref(fig:region-distribution)** shows  how the number of death,active,and recovery cases differ in the 16 different states until now. By ordering the graphs with highest total number of COVID-19 case, Northrine-Westfalia was the highest one compared to other states. This might also be due to the fact that it is the state with most citizens and there has been more testing in Northrine-Westfalia. It can be seen that meanwhile in Northrhine-Westfalia, even though it has the highest total case, there are much less active and death cases than in Baden-Württemberg and even more positive active case in Bayern until now. One possible reason is that Northrine-Westfalia imposed lock-down restrictions and stricter social distancing after the meatpacking plant became biggest infection accident in Northrine-Westfalia whcih can reduce more active case to happen @augustin2020rapid. Another explenation might be that the infected persons in Bayern and Baden-Württemberg are older because of a lot of infections within elderly care organizations so that the death cases are higher than Northrine-Westfalia.\
+
+
+```{r germany-region}
+germany_total%>% 
+  select(Date,Bundesland, NumberNewTestedIll, NumberNewDead,NumberNewRecovered)%>% 
+  rename(
+    Region = Bundesland,
+   test = NumberNewTestedIll,
+    Death=NumberNewDead,
+    Recovered=NumberNewRecovered
+    )%>%
+  group_by(Region)%>%
+  mutate(test=sum(test),
+         death=sum(Death),
+         recovery=sum(Recovered),
+         month=month(Date))%>%
+  distinct(Region,test,death,recovery)%>%
+  mutate(active=test-death-recovery)%>%
+   arrange(-test)->germany_region
+
+```
+
+
+```{r region-distribution,fig.height=5,fig.width=14,fig.cap="COVID-19 Case distribution by region in Germany"  }
+figure<-germany_region%>%
+  plot_ly(y =  ~reorder(Region,test), 
+          x = ~ active, 
+          orientation = 'h',
+          text =  ~ active,
+          textposition = 'auto',
+          type = "bar", 
+          name = "Active",
+          marker = list(size=7,color = "#09a7d1")) %>%
+  add_trace(x = ~ recovery,
+            text =  ~ recovery,
+            textposition = 'auto',
+            name = "Recovered",
+            marker = list(size=5,color = "#1aa368")) %>%
+  add_trace(x = ~ death, 
+            text =  ~ death,
+            textposition = 'auto',
+            name = "Death",
+            marker = list(size=5,color = "#f43e39")) %>%
+  layout(title = "Cases Distribution by Region",
+         barmode = 'stack',
+         hovermode = "compare",
+         legend = list(x = 0.7, y = 0.5))
+
+f <- list(
+  family = "Times New Roman",
+  size = 18,
+  color = "#7f7f7f"
+)
+x <- list(
+  title = "Number of Cases",
+  titlefont = f,
+  range=c(0,70000)
+)
+y <- list(
+  title = list(text="Region",standoff=3),
+  titlefont = f
+)
+
+figure <- figure%>% layout(xaxis = x, yaxis = y)
+
+figure
+
+```
+
+
+
 ## Acknowlegments
 
 I would like to thank all the contributors to the following R package: @tidyverse, @here, @dplyr, @DT, @covid19italy, @sparkline, @htmlwidgets, @formattable, @kableExtra, @lubridate.
