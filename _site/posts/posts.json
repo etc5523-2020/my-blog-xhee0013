@@ -1,5 +1,23 @@
 [
   {
+    "path": "posts/blog-2/",
+    "title": "COVID-19 Germany",
+    "description": "This blog post explores the current situation of COVID-19 in Germany.",
+    "author": [
+      {
+        "name": "XITONG HE",
+        "url": "https://xitong-covid19-italy.netlify.app"
+      }
+    ],
+    "date": "2020-09-18",
+    "categories": [
+      "COVID-19"
+    ],
+    "preview": "posts/blog-2/image/Germany.jpg",
+    "last_modified": "2020-09-15T19:05:06+10:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/blog-1/",
     "title": "COVID-19 Italy",
     "description": "This blog post explores the current situation of COVID-19 in Italy.",
