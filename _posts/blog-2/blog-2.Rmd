@@ -29,6 +29,7 @@ library(plotly)
 library(ggplot2)
 library(ggrepel)
 library(openair)
+library(leaflet)
 ```
 
 ```{r germany-picture, fig.cap="Germany COVID-19 situation Source from:[Skynews](https://news.sky.com/story/coronavirus-why-germany-has-such-a-low-covid-19-death-rate-11964051)"}
@@ -42,7 +43,7 @@ In this blog, I am going to analyse the situation of COVID-19 in Germany.\
 
 ## Data description
 
-The `germany_region` cleaned data is obtained from [GitHub nevrome](https://github.com/nevrome/covid19germany), where is provided a tidy format dataset with PKI timeseries about COVID-19 cases and deaths for Germany (timeseries) pandemic outbreak and the raw data is collectd by[NPGEO Corona](https://npgeo-corona-npgeo-de.hub.arcgis.com/search?groupIds=b28109b18022405bb965c602b13e1bbc). In addition, the `germany` data is from R package `coronavirus`[@coronavirus] provided by [RamiKrispin](https://github.com/RamiKrispin/coronavirus), which contains COVID-19 data from 188 countries or regions, and the raw data collected and arranged by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). 
+The `germany_region` cleaned data is obtained from [GitHub nevrome](https://github.com/nevrome/covid19germany), where is provided a tidy format dataset with PKI timeseries about COVID-19 cases and deaths for Germany (timeseries) pandemic outbreak and the raw data is collectd by[NPGEO Corona](https://npgeo-corona-npgeo-de.hub.arcgis.com/search?groupIds=b28109b18022405bb965c602b13e1bbc). In addition, the `germany` data is from R package `coronavirus`[@coronavirus] provided by [RamiKrispin](https://github.com/RamiKrispin/coronavirus), which contains COVID-19 data from 188 countries or regions, and the raw data collected and arranged by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). Moreover, the `provinces` data source is from [Trackcorno](https://www.trackcorona.live/api),providing the latest information about the confirmed case and geography details in each region.
 
 The two datasets are shown as below:\
 
@@ -50,12 +51,14 @@ The two datasets are shown as below:\
 
 -  **germany_region**- daily summary of the outbreak on the region level\
 
+-  **provinces** - overview of the confirmed cases on the each region\
 
-These two datasets is collected the information from 2020-01-27 until now, updating daily by daily data information. \
+
+These three datasets are collected the information from 2020-01-27 until now, updating daily by daily data information. \
 
 
 ```{r read-data}
-germany_total<-read.csv(here("data/RKI_COVID19.csv"))
+germany_region<-read.csv(here("data/RKI_COVID19.csv"))
 data("coronavirus")
 germany <- coronavirus %>% 
   filter(country=="Germany", date >= "2020-01-27")%>%  
@@ -66,13 +69,41 @@ germany <- coronavirus %>%
 
 
 ## Story 1: Case distribution by Region
- 
 
-**Figure \@ref(fig:region-distribution)** shows  how the number of death,active,and recovery cases differ in the 16 different states until now. By ordering the graphs with highest total number of COVID-19 case, Northrine-Westfalia was the highest one compared to other states. This might also be due to the fact that it is the state with most citizens and there has been more testing in Northrine-Westfalia. It can be seen that meanwhile in Northrhine-Westfalia, even though it has the highest total case, there are much less active and death cases than in Baden-Württemberg and even more positive active case in Bayern until now. One possible reason is that Northrine-Westfalia imposed lock-down restrictions and stricter social distancing after the meatpacking plant became biggest infection accident in Northrine-Westfalia whcih can reduce more active case to happen @augustin2020rapid. Another explenation might be that the infected persons in Bayern and Baden-Württemberg are older because of a lot of infections within elderly care organizations so that the death cases are higher than Northrine-Westfalia.\
+```{r provinces-data}
+provinces<-read.csv(here("data/provinces.csv"))%>%
+  filter(country_code=="de")%>%
+  separate(updated, sep=c("-"), into = c("year", "month","day"))%>%
+  separate(day,sep=" ",into=c("day","time"))%>%
+  filter(month=="09",day=="17")
+  
+```
+
+
+```{r map,fig.cap="Confimed cases by region in Germany"}
+map <- leaflet() %>%
+
+            setView(lat = 51.1657, lng = 10.4515,  zoom = 5) %>%
+            addTiles() %>%
+            addCircleMarkers(
+                data = provinces,
+                layerId = ~location,
+                lng = ~longitude,
+                lat = ~latitude,
+                radius = ~(confirmed/2000), 
+                label = ~paste("Region: ",location,"; Confirmed case:",confirmed), 
+                weight = 2,
+                color = "#EF0F21"
+            )
+widgetframe::frameWidget(map, width = "100%")
+```
+
+
+Based on the Figure \@ref(fig:map), it represents how the coronavirus disease has spread in each region. By interacting the map graph, Northrine-Westfalia and Bayern has most of confirmed cases with 63155 and 62809, and Baden-Württemberg is the third largest effected region in this coronavirus disease.
 
 
 ```{r germany-region}
-germany_total%>% 
+germany_region%>% 
   select( Region = Bundesland,
          test  = AnzahlFall,
          Death = AnzahlTodesfall,
@@ -136,10 +167,12 @@ figure
 
 ```
 
-## Story 2: Overall case distribution in Germany
 
-The overall case distribution cross time in Italy as displayed in the **Figure \@ref(fig:overall-plot)**.  The confirmed cases have a massive upsurge which are shown from the February to April, marking the coronavirus outbreak in Germany. The factors of biggest single outbreak during this period  at an abattoir in North Rhine-Westphalia may be contributed to cold temperatures and an insufficient air filtration system that allowed the pathogen to spread rapidly @goldstein2020temporal. Therefore, the highest peak of confirmed cases have happened in April. As Germany focused on acute healthcare measurements in dealing with the pandemic and it has advanced medical system,the recovery cases sharply increased after the outbreak happened and it reached the highest point in April @kluge2020german. Meanwhile, the government in Germany imposed strict lock-down measures to stem the spread of the coronavirus so the recovery cases have more than active and death case after April. The trend of confirmed and recovered cases have been declined significantly from April and then flatten out in July but the confirmed case raised slightly as young people were infecting others at social events and the new school year opened. Moreover, the death case only achieved the peak but in small number in April and then flatten almost into 0.
+**Figure \@ref(fig:region-distribution)** shows  how the number of death,active,and recovery cases differ in the 16 different states until now. By ordering the graphs with highest total number of COVID-19 case, Northrine-Westfalia was the highest one compared to other states. This might also be due to the fact that it is the state with most citizens and there has been more testing in Northrine-Westfalia. It can be seen that meanwhile in Northrhine-Westfalia, even though it has the highest total case, there are much less active and death cases than in Baden-Württemberg and even more positive active case in Bayern until now. One possible reason is that Northrine-Westfalia imposed lock-down restrictions and stricter social distancing after the meatpacking plant became biggest infection accident in Northrine-Westfalia whcih can reduce more active case to happen @augustin2020rapid. Another explenation might be that the infected persons in Bayern and Baden-Württemberg are older because of a lot of infections within elderly care organizations so that the death cases are higher than Northrine-Westfalia.\
 
+
+
+## Story 2: The overall case distribution in Germany
 
 ```{r overall-plot,fig.height=4,fig.width=7,fig.cap="Overall case distribution in Germany" }
 p2<-germany %>% 
@@ -174,6 +207,14 @@ ggplot(aes(x=Month,y=Cases,col=Type))+
         #panel.grid.minor = element_line(vjust=0))
 ggplotly(p2)
 ```
+
+
+The overall case distribution cross time in Germany as displayed in the **Figure \@ref(fig:overall-plot)**.  The confirmed cases have a massive upsurge which are shown from the February to April, marking the coronavirus outbreak in Germany. The factors of biggest single outbreak during this period  at an abattoir in North Rhine-Westphalia may be contributed to cold temperatures and an insufficient air filtration system that allowed the pathogen to spread rapidly @goldstein2020temporal. Therefore, the highest peak of confirmed cases have happened in April. As Germany focused on acute healthcare measurements in dealing with the pandemic and it has advanced medical system,the recovery cases sharply increased after the outbreak happened and it reached the highest point in April @kluge2020german. Meanwhile, the government in Germany imposed strict lock-down measures to stem the spread of the coronavirus so the recovery cases have more than active and death case after April. The trend of confirmed and recovered cases have been declined significantly from April and then flatten out in July but the confirmed case raised slightly as young people were infecting others at social events and the new school year opened. Moreover, the death case only achieved the peak with 5848 cased in April and then flatten into small number even in around hundreds
+
+
+
+
+*Note: All figures are reported up to 15 Sep 2020*
 
 
 
