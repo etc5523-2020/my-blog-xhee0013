@@ -1,7 +1,7 @@
 ---
 title: "COVID-19 Germany"
 description: |
-  This blog post explores the current situation of COVID-19 in Germany.
+  This blog post explores how the COVID-19 virus has spread in Germany and has impacted in different regions
 author:
   - name: XITONG HE
     url: https://xitong-covid19-italy.netlify.app
@@ -21,6 +21,7 @@ bibliography: references.bib
 knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE,fig.align="center")
 library(dplyr)
 library(tidyverse)
+library(here)
 library(lubridate)
 library(covid19germany)
 library(coronavirus)
@@ -54,8 +55,7 @@ These two datasets is collected the information from 2020-01-27 until now, updat
 
 
 ```{r read-data}
-germany_total<-covid19germany::get_RKI_timeseries()
-x<-covid19germany::group_RKI_timeseries(germany_total)
+germany_total<-read.csv(here("data/RKI_COVID19.csv"))
 data("coronavirus")
 germany <- coronavirus %>% 
   filter(country=="Germany", date >= "2020-01-27")%>%  
@@ -64,9 +64,8 @@ germany <- coronavirus %>%
 ```
 
 
-## Analyse in Germany
 
-### Case distribution by Region
+## Story 1: Case distribution by Region
  
 
 **Figure \@ref(fig:region-distribution)** shows  how the number of death,active,and recovery cases differ in the 16 different states until now. By ordering the graphs with highest total number of COVID-19 case, Northrine-Westfalia was the highest one compared to other states. This might also be due to the fact that it is the state with most citizens and there has been more testing in Northrine-Westfalia. It can be seen that meanwhile in Northrhine-Westfalia, even though it has the highest total case, there are much less active and death cases than in Baden-Württemberg and even more positive active case in Bayern until now. One possible reason is that Northrine-Westfalia imposed lock-down restrictions and stricter social distancing after the meatpacking plant became biggest infection accident in Northrine-Westfalia whcih can reduce more active case to happen @augustin2020rapid. Another explenation might be that the infected persons in Bayern and Baden-Württemberg are older because of a lot of infections within elderly care organizations so that the death cases are higher than Northrine-Westfalia.\
@@ -74,18 +73,16 @@ germany <- coronavirus %>%
 
 ```{r germany-region}
 germany_total%>% 
-  select(Date,Bundesland, NumberNewTestedIll, NumberNewDead,NumberNewRecovered)%>% 
-  rename(
-    Region = Bundesland,
-   test = NumberNewTestedIll,
-    Death=NumberNewDead,
-    Recovered=NumberNewRecovered
-    )%>%
+  select( Region = Bundesland,
+         test  = AnzahlFall,
+         Death = AnzahlTodesfall,
+         Recovered = AnzahlGenesen,
+         date = Meldedatum) %>%
   group_by(Region)%>%
   mutate(test=sum(test),
          death=sum(Death),
          recovery=sum(Recovered),
-         month=month(Date))%>%
+         month=month(date))%>%
   distinct(Region,test,death,recovery)%>%
   mutate(active=test-death-recovery)%>%
    arrange(-test)->germany_region
@@ -139,41 +136,47 @@ figure
 
 ```
 
-### Overall case distribution in Germany
+## Story 2: Overall case distribution in Germany
+
+The overall case distribution cross time in Italy as displayed in the **Figure \@ref(fig:overall-plot)**.  The confirmed cases have a massive upsurge which are shown from the February to April, marking the coronavirus outbreak in Germany. The factors of biggest single outbreak during this period  at an abattoir in North Rhine-Westphalia may be contributed to cold temperatures and an insufficient air filtration system that allowed the pathogen to spread rapidly @goldstein2020temporal. Therefore, the highest peak of confirmed cases have happened in April. As Germany focused on acute healthcare measurements in dealing with the pandemic and it has advanced medical system,the recovery cases sharply increased after the outbreak happened and it reached the highest point in April @kluge2020german. Meanwhile, the government in Germany imposed strict lock-down measures to stem the spread of the coronavirus so the recovery cases have more than active and death case after April. The trend of confirmed and recovered cases have been declined significantly from April and then flatten out in July but the confirmed case raised slightly as young people were infecting others at social events and the new school year opened. Moreover, the death case only achieved the peak but in small number in April and then flatten almost into 0.
 
 
-
-
-```{r overall-plot,fig.height=6,fig.width=7,fig.cap="Overall case distribution in Germany" }
-germany %>% 
-  mutate(month=month(date))%>%
-  group_by(type,month) %>%
-  summarise(total_cases = sum(cases))%>%
+```{r overall-plot,fig.height=4,fig.width=7,fig.cap="Overall case distribution in Germany" }
+p2<-germany %>% 
+  mutate(Month=month(date))%>%
+  group_by(type,Month) %>%
+  summarise(Cases = sum(cases))%>%
   rename(Type=type)%>%
-ggplot(aes(x=month,y=total_cases,col=Type))+ 
+ggplot(aes(x=Month,y=Cases,col=Type))+ 
   geom_line()+ 
   geom_point()+
-  labs(x = "", y = "Daily count", title =  "Case distribution - Monthly", subtitle = "Germany")+
- theme_gray()+
+  labs(x = "", y = "Cases count", title =  "Case distribution - Monthly", subtitle = "Germany")+
+ theme_bw()+
   theme(legend.position="bottom",
         legend.direction="horizontal",
         legend.box.background = element_rect(fill = "transparent"),
-        legend.background = element_rect(fill = "transparent",linetype="solid",color = "#9bc1e0"),
+        legend.background = element_rect(fill = "transparent",linetype="solid",color = "#BDD9EC"),
         axis.text = element_text(size = 10),
-        legend.text = element_text(size = 10), 
-        legend.title = element_text(size=14),
-        axis.title = element_text(size = 14), 
+        legend.text = element_text(size = 10,color = "#1B6D9C"), #1B6D9C#0E629B
+        #legend.title = element_text(size=12,colour = "#6F767A"),
+        legend.title = element_blank(),
+        axis.title = element_text(size = 12,color="#6F767A"), 
         axis.line = element_line(size = 0.4, colour = "white"),
-        plot.background = element_rect(fill = "#9bc1e0"),
+        plot.background = element_rect(fill = "#BDD9EC"),##9bc1e0
         panel.background = element_rect(fill="transparent"),
+        panel.border = element_blank(),
+  panel.grid.major = element_blank(),
+  panel.grid.minor = element_blank(),
         axis.line.x = element_line(siz=0),
         axis.ticks.x.bottom = element_line(colour = "white",size = 0),
         plot.margin = margin(10,20,10,20))+
   scale_x_continuous(breaks = seq(1, 9,1))
         #panel.grid.minor = element_line(vjust=0))
+ggplotly(p2)
 ```
+
 
 
 ## Acknowlegments
 
-I would like to thank all the contributors to the following R package: @tidyverse, @here, @dplyr, @DT, @covid19italy, @sparkline, @htmlwidgets, @formattable, @kableExtra, @lubridate.
+I would like to thank all the contributors to the following R package: @tidyverse, @here, @dplyr, @lubridate, @covid19germany, @coronavirus, @ggplot2, @plotly, @ggrepel, @openair.

@@ -2,7 +2,7 @@
   {
     "path": "posts/blog-2/",
     "title": "COVID-19 Germany",
-    "description": "This blog post explores the current situation of COVID-19 in Germany.",
+    "description": "This blog post explores how the COVID-19 virus has spread in Germany and has impacted in different regions",
     "author": [
       {
         "name": "XITONG HE",
@@ -14,8 +14,8 @@
       "COVID-19"
     ],
     "preview": "posts/blog-2/image/Germany.jpg",
-    "last_modified": "2020-09-15T19:13:07+10:00",
-    "input_file": "blog-2.utf8.md"
+    "last_modified": "2020-09-17T13:14:17+10:00",
+    "input_file": {}
   },
   {
     "path": "posts/blog-1/",

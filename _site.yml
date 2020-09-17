@@ -9,6 +9,8 @@ navbar:
       href: index.html
     - text: "About Me"
       href: about.html
+    - icon: fa fa-github
+      href: https://github.com/etc5523-2020/my-blog-xhee0013
 rss:
   full_content: TRUE
   categories:
