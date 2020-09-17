@@ -7,6 +7,12 @@ navbar:
   right:
     - text: "Home"
       href: index.html
+    - text: "Posts"
+      menu:
+        - text: "Italy"
+          href: posts/blog-1/index.html
+        - text: "Germany"
+          href: posts/blog-2/index.html
     - text: "About Me"
       href: about.html
     - icon: fa fa-github
