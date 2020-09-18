@@ -3,6 +3,8 @@ title: "ETC5523 Blog"
 description: |
    Blog Posts
 output_dir: "_site"
+base_url: https://xitong-covid19.netlify.app/
+repository_url: https://github.com/etc5523-2020/my-blog-xhee0013
 navbar:
   right:
     - text: "Home"
