@@ -1,5 +1,5 @@
 ---
-title: "COVID-19 Tracker"
+title: "Self review: COVID-19 Tracker"
 description: |
   This blog post...
 author:
@@ -9,7 +9,7 @@ author:
 preview: image/covid19.jpg
 date: 10-16-2020
 categories: 
-  - COVID-19
+  - Shiny app
 output:
   distill::distill_article:
     self_contained: false
@@ -28,3 +28,7 @@ knitr::include_graphics('image/covid19.jpg')
 
 
 ## Shiny Application Introduction
+
+The shiny application was produced by using the R package [Shiny]( https://shiny.rstudio.com/) for the one of assessment in ETC5523 course, which is an interactive webiste application by updating user inputs. The application can be run on the [remote host](https://xitong-he.shinyapps.io/shiny-assessment-xhee0013).
+
+The main motivation behind this simple shiny app is designed to interactively visualize the situation of COVID-19 cases in three countries such as Australia, China and United Kingdom from January to September and provide a platform for performing and reviewing the change of cases distribution for each regions in all countries across time. All data used by this application are collected through `coronavirus` package which is from [RamiKrispin GitHub repo](https://github.com/RamiKrispin/coronavirus). The coronavirus dataset consists of measurements of case distribution between countries and regions across time, therefore it will be used and constructed a series of analysis to evaluate the situation of COVID-19 pandemic.

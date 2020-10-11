@@ -7,81 +7,15 @@
     <description>Blog Posts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>COVID-19 Tracker</title>
+      <title>Self review: COVID-19 Tracker</title>
       <dc:creator>XITONG HE</dc:creator>
       <link>https://xitong-covid19.netlify.app/posts/blog-3</link>
-      <description>
-
-
-&lt;div class="container-fluid main-container"&gt;
-
-
-
-
-&lt;div class="fluid-row" id="header"&gt;
-
-
-
-
-&lt;/div&gt;
-
-
-&lt;div id="shiny-application-introduction" class="section level2"&gt;
-&lt;h2&gt;Shiny Application Introduction&lt;/h2&gt;
-&lt;/div&gt;
-
-
-
-
-&lt;/div&gt;
-
-&lt;script&gt;
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-&lt;/script&gt;
-
-&lt;!-- tabsets --&gt;
-
-&lt;script&gt;
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown &gt; .nav-tabs &gt; li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-&lt;/script&gt;
-
-&lt;!-- code folding --&gt;
-
-
-&lt;!-- dynamically load mathjax for compatibility with self-contained --&gt;
-&lt;script&gt;
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-&lt;/script&gt;
-
-</description>
-      <distill:md5>71febce908ed6b7482f00c9755d46fbe</distill:md5>
-      <category>COVID-19</category>
+      <description>This blog post...</description>
+      <category>Shiny app</category>
       <guid>https://xitong-covid19.netlify.app/posts/blog-3</guid>
-      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
       <media:content url="https://xitong-covid19.netlify.app/posts/blog-3/image/covid19.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>

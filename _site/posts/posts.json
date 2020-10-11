@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/blog-3/",
-    "title": "COVID-19 Tracker",
+    "title": "Self review: COVID-19 Tracker",
     "description": "This blog post...",
     "author": [
       {
@@ -11,11 +11,11 @@
     ],
     "date": "2020-10-16",
     "categories": [
-      "COVID-19"
+      "Shiny app"
     ],
     "preview": "posts/blog-3/image/covid19.jpg",
-    "last_modified": "2020-10-11T11:19:19+11:00",
-    "input_file": "blog-3.utf8.md"
+    "last_modified": "2020-10-11T11:32:06+11:00",
+    "input_file": {}
   },
   {
     "path": "posts/blog-2/",
