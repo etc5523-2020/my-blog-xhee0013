@@ -24,7 +24,7 @@ knitr::opts_chunk$set(echo = FALSE,message = FALSE,warning = FALSE,fig.align="ce
 
 ## Shiny Application Introduction
 
-The shiny application was produced by using the R package [Shiny]( https://shiny.rstudio.com/) for the one of assessment in ETC5523 course, which is an interactive webiste application by updating user inputs. The application can be run on the [remote host](https://xitong-he.shinyapps.io/shiny-assessment-xhee0013).
+The shiny application was produced by using the R package [Shiny]( https://shiny.rstudio.com/) for the one of assessment in ETC5523 course, which is an interactive website application by updating user inputs. The application can be run on the [remote host](https://xitong-he.shinyapps.io/shiny-assessment-xhee0013).
 
 The main motivation behind this simple shiny app is designed to interactively visualize the situation of COVID-19 cases in three countries such as Australia, China and United Kingdom from January to September and provide a platform for performing and reviewing the change of cases distribution for each regions in all countries across time. All data used by this application are collected through `coronavirus`[@coronavirus] package which is from [RamiKrispin GitHub repo](https://github.com/RamiKrispin/coronavirus). The coronavirus dataset consists of measurements of case distribution between countries and regions across time, therefore it will be used and constructed a series of analysis to evaluate the situation of COVID-19 pandemic.
 
@@ -62,7 +62,7 @@ In addition, by using the shiny theme with flatly to customize the better appear
 
 ### 2. What are the points you can improve on?
 
-By examining this shiny apps, a several implementations can be improved. Firstly, the user input options such as selecting country or regions can be improved by selecting multiple choices rather than one options made. In this case, we could visualized clearly different regions or countries data to compare the situation of COVID-19 in these places. Also, the time series plot should be used in daily data instead of grouping in months to obtain the daily information about the change of COVID-19 case, therefore, the date range input should be added as well. This would allow to compare the data at a specific date in each region instead of adding in a month.
+By examining this shiny apps, a several implementations can be improved. Firstly, the user input options such as selecting country or regions can be improved by selecting multiple choices rather than one option made. In this case, we could visualized clearly different regions or countries data to compare the situation of COVID-19 in these places. Also, the time series plot should be used in daily data instead of grouping in months to obtain the daily information about the change of COVID-19 case, therefore, the date range input should be added as well. This would allow to compare the data at a specific date in each region instead of adding in a month.
 
 
 Furthermore, more informative explanation could be added in each plot or table once the user clicked the data point. While user clicking the time series or pie chart data point, an appropriate explanation abut the situation or proportion in this region would be provided, giving more understandable analysis for this app. In addition, the data tables could be improved by using DT table function to provide the more interactive visualization to the readers and reset the alignment for the column title which should be placed in the center.
@@ -72,7 +72,7 @@ Furthermore, more informative explanation could be added in each plot or table o
 
 Expanding the scope of this application such as considering all the countries where are affected by COVID-19 to give more intuitively comparison about the change of COVID-19 cases in global. In addition, considering different measurement or response for coronavirus in each countries or region could be added,such as how do these countries impose lock-down measure to stem the spread of the coronavirus. Therefore, when the users updated the country or region input, the text would be displayed which could give more information about how this country or region reacting on coronavirus.
 
-In addition, not only expanding the scope of the map, but also providing more detailed visualization of each country. In this case, it could show how the coronvirus has spread from China or throughout the world,giving more accurate depiction of the COVID-19 change. The further information would be included in the produced graphs as well.
+In addition, not only expanding the scope of the map, but also providing more detailed visualization of each country. In this case, it could show how the coronavirus has spread from China or throughout the world,giving more accurate depiction of the COVID-19 change. The further information would be included in the produced graphs as well.
 
 
 ### 4. What are some things that you’d like to add that cannot be done yet due to limitation in data or technology?
