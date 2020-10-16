@@ -7,15 +7,123 @@
     <description>Blog Posts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 15 Oct 2020 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Self review: COVID-19 Tracker</title>
       <dc:creator>XITONG HE</dc:creator>
       <link>https://xitong-covid19.netlify.app/posts/blog-3</link>
-      <description>This blog post will be about the self reflection in the shiny app with my learning process.</description>
+      <description>
+
+
+&lt;div class="container-fluid main-container"&gt;
+
+
+
+
+&lt;div class="fluid-row" id="header"&gt;
+
+
+
+
+&lt;/div&gt;
+
+
+&lt;div id="shiny-application-introduction" class="section level2"&gt;
+&lt;h2&gt;Shiny Application Introduction&lt;/h2&gt;
+&lt;p&gt;The shiny application was produced by using the R package &lt;a href="https://shiny.rstudio.com/"&gt;Shiny&lt;/a&gt; for the one of assessment in ETC5523 course, which is an interactive webiste application by updating user inputs. The application can be run on the &lt;a href="https://xitong-he.shinyapps.io/shiny-assessment-xhee0013"&gt;remote host&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The main motivation behind this simple shiny app is designed to interactively visualize the situation of COVID-19 cases in three countries such as Australia, China and United Kingdom from January to September and provide a platform for performing and reviewing the change of cases distribution for each regions in all countries across time. All data used by this application are collected through &lt;code&gt;coronavirus&lt;/code&gt;&lt;span class="citation"&gt;[@coronavirus]&lt;/span&gt; package which is from &lt;a href="https://github.com/RamiKrispin/coronavirus"&gt;RamiKrispin GitHub repo&lt;/a&gt;. The coronavirus dataset consists of measurements of case distribution between countries and regions across time, therefore it will be used and constructed a series of analysis to evaluate the situation of COVID-19 pandemic.&lt;/p&gt;
+&lt;p&gt;In addition, the Shiny app has the ability to make interactive visualization with corresponding the user input. Therefore,the four main visualization sections are contained in the application:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A leaflet map displaying the confirmed case of COVID-19 in each region with its corresponding country where the users could select one country and then check its map. To turn on any of these layers, hover the mouse over the layers control box (top left of map, under zoom buttons) and select one layer,meanwhile, the province input value will be updated automatically once you selected region.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://xitong-covid19.netlify.app//posts/blog-3/image/map.png" width="672" style="display: block; margin: auto;" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A line plotly graph showing the time series data about how the three type of COVID-19 cases such as confirmed, death and recovered distributed from January to September in each corresponding region which should be updated region/province name by users input or clicking the region on the map.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://xitong-covid19.netlify.app//posts/blog-3/image/lineplot.png" width="1318" style="display: block; margin: auto;" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A pie plotly graph representing the proportion of each case type in different months in each specific region which can be updated by user input or clicking the region on the map. The each case type should be selected by clicking on a data point from the line plotly graph and then it will generate the proportion of this case type across time in each region.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://xitong-covid19.netlify.app//posts/blog-3/image/pie.png" width="1370" style="display: block; margin: auto;" /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A table recording the number of confirmed,death and recovered case in each country from January to September where the users could select their country of interest.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src="https://xitong-covid19.netlify.app//posts/blog-3/image/table.png" width="1536" style="display: block; margin: auto;" /&gt;&lt;/p&gt;
+&lt;p&gt;Furthermore, there is an &lt;code&gt;About&lt;/code&gt; tab to explain more details about the introduction and output of this COVID-19 Tracker shiny app. This is to give the user more clearly understanding about how to use this shiny app, and the illustration of each output&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="self-review" class="section level2"&gt;
+&lt;h2&gt;Self Review&lt;/h2&gt;
+&lt;div id="what-did-you-do-well" class="section level3"&gt;
+&lt;h3&gt;1. What did you do well?&lt;/h3&gt;
+&lt;p&gt;Firstly, I used the ‘leaflet_marker_click’ functionality for connecting with each region input and time series plot. In fact, this is similar with ‘event_data’ function but more specific in map construction. And I create an observe event and reactive value for leaflet click to connect successfully in province input and time series line graph.&lt;/p&gt;
+&lt;p&gt;In addition, by using the shiny theme with flatly to customize the better appearance of shiny apps, making it look more attractive and appeal. Also, adding the theme with ggplot2 to construct a appropriate time series plot,this helps me improve the skills for using different options to construct better data visualization. Furthermore, creating a table with kableExtra package by adjusting the styling and alignment to display more aesthetic.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="what-are-the-points-you-can-improve-on" class="section level3"&gt;
+&lt;h3&gt;2. What are the points you can improve on?&lt;/h3&gt;
+&lt;p&gt;By examining this shiny apps, a several implementations can be improved. Firstly, the user input options such as selecting country or regions can be improved by selecting multiple choices rather than one options made. In this case, we could visualized clearly different regions or countries data to compare the situation of COVID-19 in these places. Also, the time series plot should be used in daily data instead of grouping in months to obtain the daily information about the change of COVID-19 case, therefore, the date range input should be added as well. This would allow to compare the data at a specific date in each region instead of adding in a month.&lt;/p&gt;
+&lt;p&gt;Furthermore, more informative explanation could be added in each plot or table once the user clicked the data point. While user clicking the time series or pie chart data point, an appropriate explanation abut the situation or proportion in this region would be provided, giving more understandable analysis for this app. In addition, the data tables could be improved by using DT table function to provide the more interactive visualization to the readers and reset the alignment for the column title which should be placed in the center.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="what-are-some-things-that-youd-like-to-add-thats-plausible" class="section level3"&gt;
+&lt;h3&gt;3. What are some things that you’d like to add that’s plausible?&lt;/h3&gt;
+&lt;p&gt;Expanding the scope of this application such as considering all the countries where are affected by COVID-19 to give more intuitively comparison about the change of COVID-19 cases in global. In addition, considering different measurement or response for coronavirus in each countries or region could be added,such as how do these countries impose lock-down measure to stem the spread of the coronavirus. Therefore, when the users updated the country or region input, the text would be displayed which could give more information about how this country or region reacting on coronavirus.&lt;/p&gt;
+&lt;p&gt;In addition, not only expanding the scope of the map, but also providing more detailed visualization of each country. In this case, it could show how the coronvirus has spread from China or throughout the world,giving more accurate depiction of the COVID-19 change. The further information would be included in the produced graphs as well.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="what-are-some-things-that-youd-like-to-add-that-cannot-be-done-yet-due-to-limitation-in-data-or-technology" class="section level3"&gt;
+&lt;h3&gt;4. What are some things that you’d like to add that cannot be done yet due to limitation in data or technology?&lt;/h3&gt;
+&lt;p&gt;For the further exploration of COVID-19 and how it has been spread throughout in each country or region,a dynamic map would be constructed in new section. This dynamic map could be displayed the change of daily case in each country,which would be like a heat map to represent the level of COVID-19 cases in each country. And then it should be added data range input as well for providing the users to select their date of interest. However, based on the limitation of the coronavirus dataset, it has the limited information for region in each country and some of the region information are incorrect. Moreover, it is difficult for me to build up a heat map even though I tried it but it could not represent a good visualization for the dynamic map. In addition, I might use another dataset with more details in coronavirus to build a forecasting model like glm model and then predict next few days case for the country or region which the users would be able to select. By adding the forecasting model, this would provide more information to explore the COVID-19 case. But it need to distinguish the flexible or inflexible concept with the model construction and decide to use parametric or non-parametric method to build up the forecasting model. This might need more forecasting and statistical learning knowledge to make the appropriate perdition about the COVID-19 cases.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+
+&lt;/div&gt;
+
+&lt;script&gt;
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+&lt;/script&gt;
+
+&lt;!-- tabsets --&gt;
+
+&lt;script&gt;
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown &gt; .nav-tabs &gt; li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+&lt;/script&gt;
+
+&lt;!-- code folding --&gt;
+
+
+&lt;!-- dynamically load mathjax for compatibility with self-contained --&gt;
+&lt;script&gt;
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+&lt;/script&gt;
+
+</description>
+      <distill:md5>71febce908ed6b7482f00c9755d46fbe</distill:md5>
       <category>Shiny app</category>
       <guid>https://xitong-covid19.netlify.app/posts/blog-3</guid>
-      <pubDate>Fri, 16 Oct 2020 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 15 Oct 2020 00:00:00 +0000</pubDate>
       <media:content url="https://xitong-covid19.netlify.app/posts/blog-3/image/covid19.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>

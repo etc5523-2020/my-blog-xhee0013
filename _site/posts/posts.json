@@ -2,7 +2,7 @@
   {
     "path": "posts/blog-3/",
     "title": "Self review: COVID-19 Tracker",
-    "description": "This blog post will be about the self reflection in the shiny app with my learning process.",
+    "description": "This blog post will be talked about the self reflection in my first shiny app.",
     "author": [
       {
         "name": "XITONG HE",
@@ -14,8 +14,8 @@
       "Shiny app"
     ],
     "preview": "posts/blog-3/image/covid19.jpg",
-    "last_modified": "2020-10-14T09:30:07+11:00",
-    "input_file": {}
+    "last_modified": "2020-10-16T15:38:30+11:00",
+    "input_file": "blog-3.utf8.md"
   },
   {
     "path": "posts/blog-2/",
