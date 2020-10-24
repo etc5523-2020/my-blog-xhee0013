@@ -7,7 +7,16 @@
     <description>Blog Posts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Oct 2020 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>R-package review</title>
+      <dc:creator>XITONG HE</dc:creator>
+      <link>https://xitong-covid19.netlify.app/posts/blog-4</link>
+      <description>This blog post will be talked about.....</description>
+      <category>R Package</category>
+      <guid>https://xitong-covid19.netlify.app/posts/blog-4</guid>
+      <pubDate>Fri, 30 Oct 2020 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Self review: COVID-19 Tracker</title>
       <dc:creator>XITONG HE</dc:creator>

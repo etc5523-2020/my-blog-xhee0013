@@ -17,6 +17,8 @@ navbar:
           href: posts/blog-2/index.html
         - text: "Shiny app"
           href: posts/blog-3/index.html
+        - text: "R Package"
+          href: posts/blog-4/index.html
     - text: "About Me"
       href: about.html
     - icon: fa fa-github

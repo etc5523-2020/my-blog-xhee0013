@@ -1,0 +1,18 @@
+---
+title: "R-package review"
+description: |
+   This blog post will be talked about.....
+author:
+  - name: XITONG HE
+    url: 
+date: October 30, 2020
+categories: 
+  - R Package
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
