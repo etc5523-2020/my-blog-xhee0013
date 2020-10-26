@@ -68,11 +68,11 @@ date_range (covid_raw,date_col = "date",1)
 
 **Shiny App improvements**
 
-The `covid19dashboard` shiny application is easy to explore the coronavirus data interactively via the different knids of plots and tables such as clicking different line in the plotly graph which would display the table with the specific case type in different countries. However, there are some improvements can be made in the Shiny App.
+The `covid19dashboard` shiny application is easy to explore the coronavirus data interactively via the different kinds of plots and tables such as clicking different line in the plotly graph which would display the table with the specific case type in different countries. However, there are some improvements can be made in the Shiny App.
 
 First of all, in the data section, the `Select variable` option in the top left corner, which did not update the output of raw data table. Therefore, the updated input issue should be solve in this case.
 
-In addition, the graph with the number of visitors change since the pandemic which would changed in plotly style, providing more interactive information for the users selection. For example, when selecting the Japan workplace, transit station and residential,users could visualize directly about the number of visitsors change based on pandemic instead of only showing the time series trend, which could know more about the specific information such as how many visitors in the lowest point in these industry.
+In addition, the graph with the number of visitors change since the pandemic which would changed in plotly style, providing more interactive information for the users selection. For example, when selecting the Japan workplace, transit station and residential,users could visualize directly about the number of visitors change based on pandemic instead of only showing the time series trend, which could know more about the specific information such as how many visitors in the lowest point in these industry.
 
 Furthermore,the presentation of the `summary table` should be followed the guideline such as left justify text, right justify numbers. 
     
@@ -88,7 +88,36 @@ In this package, there is enough documentation to provide the information of how
 By reviewing the `covid19dashboard` package, I have learned how could I improve my shiny app and give more insightful to build up a package. From the Shiny App, it was interesting to see the number of visitors change because of pandemic compared with different countries across time in different industry. In addition, the trajectory graph with COVID-19 cases presents how the daily new cases change with the increase in the number of different case types, which gives more details in visualization about when the pandemic is getting better. Plotting the time series data in coronavirus, it can give more intuitive to visualize how the coronavirus changed across time in different countries.
 
 
+## **Appendix**
 
+### Package Review
+
+
+#### Documentation
+
+The package includes all the following forms of documentation:  
+
+- [x] **Installation instructions for the package in README file:** Clear instruction and easy to follow how to install and use the package, giving a big picture overview of the package.
+
+- [x] **Vignette(s)**: demonstrating major functionality that runs successfully locally. By using `pkgdown` site which give more details about the datasets and functions in this package.
+
+- [x] **Function Documentation**: for all exported functions in R help. All functions are exported in this package have some form of documentation.
+
+- [x] **Examples**: for all exported functions in R Help that run successfully locally.
+
+#### Functionality
+
+- [x] **Installation**: Installation succeeds as documented. The `covid19dashboard` package could be able to be installed into R without any errors.  
+- [x] **Functionality**: Any functional claims of the software been confirmed.   
+- [x] **Automated tests**: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
+
+Estimated hours spent reviewing:
+
+- [x] Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.
+
+#### Review Comments
+
+The `covid19dashboard` package has passed all the unit tests of functionality in documentations and has proper vignette website page to introduce more information about this package. In addition, the Shiny App is included in this package by using the `launch_app` function to run it, which could be displayed successfully about how the COVID-19 pandemic have affected in different countries.
 
 
 
