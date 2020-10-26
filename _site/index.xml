@@ -57,6 +57,27 @@
 &lt;p&gt;When checking the Github page, the README file provides a basic information about this package, including the datasets, function explanation and clear picture of the shiny application. In the pkgdown site page, it provides more explanation for the shiny application about how to use the COVID-19 dashboard. By followed the instruction, I was downloaded the package and successfully able to explore the data sets or some functions in this package such as the &lt;code&gt;launch_app&lt;/code&gt; could run the shiny application automatically and then explore it via different user inputs. Using the &lt;code&gt;add_comma&lt;/code&gt; function could be labeled numbers in formatted style.&lt;/p&gt;
 &lt;p&gt;However, except for &lt;code&gt;launch_app&lt;/code&gt; function is explained in the README and pkgdown file, the other three functions such as &lt;code&gt;shiny_note&lt;/code&gt; function has not be included so the reviewer would have to download the package and go to help tab to explore those function.&lt;/p&gt;
 &lt;/div&gt;
+&lt;div id="suggested-improvements" class="section level2"&gt;
+&lt;h2&gt;&lt;strong&gt;Suggested Improvements&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Code improvements&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I think the code in this package is well-written and easy to understand documentation. However, there are some improvements could be made to code.&lt;/p&gt;
+&lt;p&gt;For example, the &lt;code&gt;date_range&lt;/code&gt; function which is used to date range inputs into the shiny app. When clicked on, bring up calendars that the user can click on to select dates. But the given example in this function is hard to understand how to use this function, instead of running the original example with some complicated argument, the more specific example should be displayed for guiding the users more understandable how to select different date inputs .&lt;/p&gt;
+&lt;p&gt;Here is an example:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@examples
+date_range (covid_raw,date_col = &amp;quot;date&amp;quot;,1)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;Shiny App improvements&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;covid19dashboard&lt;/code&gt; shiny application is easy to explore the coronavirus data interactively via the different knids of plots and tables such as clicking different line in the plotly graph which would display the table with the specific case type in different countries. However, there are some improvements can be made in the Shiny App.&lt;/p&gt;
+&lt;p&gt;First of all, in the data section, the &lt;code&gt;Select variable&lt;/code&gt; option in the top left corner, which did not update the output of raw data table. Therefore, the updated input issue should be solve in this case.&lt;/p&gt;
+&lt;p&gt;In addition, the graph with the number of visitors change since the pandemic which would changed in plotly style, providing more interactive information for the users selection. For example, when selecting the Japan workplace, transit station and residential,users could visualize directly about the number of visitsors change based on pandemic instead of only showing the time series trend, which could know more about the specific information such as how many visitors in the lowest point in these industry.&lt;/p&gt;
+&lt;p&gt;Furthermore,the presentation of the &lt;code&gt;summary table&lt;/code&gt; should be followed the guideline such as left justify text, right justify numbers.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Documentation improvements&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In this package, there is enough documentation to provide the information of how to use the package and what would be contained in it. For the &lt;code&gt;launch_app&lt;/code&gt; function, the documentation is easy to understand and could be reproduced the shiny app. However, the &lt;code&gt;shiny_note&lt;/code&gt; function has more ambiguous argument in the function input and users would not know about how to use the function until see the example. The better way would be added the text parameter instead of using period(.). Further, the &lt;code&gt;Vignette&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Elaborating on what is being plotting in the stringency function could be included as users will not know what the function does until running the application. Further, the &lt;code&gt;input&lt;/code&gt; argument description is a bit vague, this argument can be left out as there is actually no argument needed to run the function. Providing an example for the interact function could be included to better help users understand how to use the function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="conclusion" class="section level2"&gt;
+&lt;h2&gt;&lt;strong&gt;Conclusion&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;By reviewing the &lt;code&gt;covid19dashboard&lt;/code&gt; package, I have learned how could I improve my shiny app and give more insightful to build up a package. From the Shiny App, it was interesting to see the number of visitors change because of pandemic compared with different countries across time in different industry. In addition, the trajectory graph with COVID-19 cases presents how the daily new cases change with the increase in the number of different case types, which gives more details in visualization about when the pandemic is getting better. Plotting the time series data in coronavirus, it can give more intuitive to visualize how the coronavirus changed across time in different countries.&lt;/p&gt;
+&lt;/div&gt;
 
 
 
