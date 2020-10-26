@@ -2,7 +2,7 @@
   {
     "path": "posts/blog-4/",
     "title": "R-package review",
-    "description": "This blog post will be talked about.....",
+    "description": "This blog post will be talked about the R Package Review - A review of R package 'COVID19dashboard'",
     "author": [
       {
         "name": "XITONG HE",
@@ -14,8 +14,8 @@
       "R Package"
     ],
     "preview": {},
-    "last_modified": "2020-10-24T21:32:45+11:00",
-    "input_file": {}
+    "last_modified": "2020-10-27T10:08:15+11:00",
+    "input_file": "blog-4.utf8.md"
   },
   {
     "path": "posts/blog-3/",

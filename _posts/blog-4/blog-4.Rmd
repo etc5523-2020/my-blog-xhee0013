@@ -1,7 +1,7 @@
 ---
 title: "R-package review"
 description: |
-   This blog post will be talked about.....
+   This blog post will be talked about the R Package Review - A review of R package 'COVID19dashboard'
 author:
   - name: XITONG HE
     url: 
@@ -16,3 +16,47 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
+
+
+## Overview
+
+In this blog post I would be reviewing Yiwen Jiang's R package `COVID19dashboard`, making for one of assessment in ETC5523 course. This package contains coronavirus data, some functions about user interface-side and server-side, and launching shiny application. This package can be found via [GitHub](https://github.com/etc5523-2020/r-package-assessment-YIWEN-JIANG-github).
+Moreover, more details about this package can be found [pkgdown site](https://etc5523-2020.github.io/r-package-assessment-YIWEN-JIANG-github/). 
+
+
+The goal of COVID19dashboard package is to provide datasets and functions to run the COVID-19 shiny dashboard. The shiny application contained in the package, first launched on Oct 2020, aims to complement existing COVID-19 mapping dashboards (such as those developed by the [WHO](https://covid19.who.int/)) with several interactive features, including the timeline function and the ability to compare between countries.
+
+### Data sets
+
+To explore further details in this package, three data sets are included in it :
+
+- `covid_raw`: The data comes from covid_raw.rda. The data contains the COVID-19 information of 210 countries since Dec 31, 2019.
+- `visitors_total`: The data comes from visitors_total.rda. The data contains information on how the number of visitors changes sine pandemic for different places.
+- `visitor_map`: The data comes from visitor_map.rda. The data added geometric information compare to visitors_total, it can be used to create a map plot.
+
+### Main functions
+
+The main functions in this package includes:
+
+- **launch_app()**: This function allows the users to run the shiny dashboard via providing interactive visualisation and used to compare the difference between the countries.: 
+
+- **add_comma()**: Label numbers in decimal format (e.g. 1,234). This function is used to insert a comma every three digits for columns in a data frame.
+
+- **shiny_note()**: Add a note box into shiny app. It is a function that inserts a box that contains elements of note.  Using HTML tags to write you own notes for your shiny app, including How to interactive with the app, what does the output mean
+
+- **date_range()**: Create date range input. This function provides date range input into the shiny app for the user selections. When clicked on, bring up calendars that the user can click on to select dates.
+  
+## What did I think this package would do? Did it do it?
+
+When checking the Github page, the README file provides a basic information about this package, including the datasets, function explanation and clear picture of the shiny application. In the pkgdown site page, it provides more explanation for the shiny application about how to use the COVID-19 dashboard. By followed the instruction, I was downloaded the package and successfully able to explore the data sets or some functions in this package such as the `launch_app` could run the shiny application automatically and then explore it via different user inputs. Using the `add_comma` function could be labeled numbers in formatted style.
+
+However, except for `launch_app` function is explained in the README and pkgdown file, the other three functions such as `shiny_note` function has not be included so the reviewer would have to download the package and go to help tab to explore those function.
+
+
+
+
+
+
+
+
+
