@@ -80,9 +80,7 @@ Furthermore,the presentation of the `summary table` should be followed the guide
 
 **Documentation improvements**
 
-In this package, there is enough documentation to provide the information of how to use the package and what would be contained in it. For the `launch_app` function, the documentation is easy to understand and could be reproduced the shiny app. However, the `shiny_note` function has more ambiguous argument in the function input and users would not know about how to use the function until see the example. The better way would be added the text parameter instead of using period(.). Further, the `Vignette`
-
- Elaborating on what is being plotting in the stringency function could be included as users will not know what the function does until running the application. Further, the `input` argument description is a bit vague, this argument can be left out as there is actually no argument needed to run the function. Providing an example for the interact function could be included to better help users understand how to use the function.    
+In this package, there is enough documentation to provide the information of how to use the package and what would be contained in it. For the `launch_app` function, the documentation is easy to understand and could be reproduced the shiny app. However, the `shiny_note` function has more ambiguous argument in the function input and users would not know about how to use the function until see the example. The better way would be added the text parameter instead of using period(`.`).   
 
 ## **Conclusion**
 
@@ -98,33 +96,33 @@ By reviewing the `covid19dashboard` package, I have learned how could I improve 
 
 The package includes all the following forms of documentation:  
 
-- [✔] **Installation instructions** for the package in README file.
+- [✔] **Installation instructions: ** For the package in README file.
 
-- [✔] **Vignette(s)**: demonstrating major functionality that runs successfully locally. By using `pkgdown` site which give more details about the datasets and functions in this package.
+- [✔] **Vignette(s): ** Demonstrating major functionality that runs successfully locally. 
 
-- [✔] **Function Documentation**: for all exported functions in R help. All functions are exported in this package have some form of documentation.
+- [✔] **Function Documentation: ** For all exported functions in R help. 
 
-- [✔] **Examples**: for all exported functions in R Help that run successfully locally.
+- [✔] **Examples: ** For all exported functions in R Help that run successfully locally.
 
 #### Comments
 
-- **Installation instructions**: Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.
-- **Vignette(s) **: By using `pkgdown` site,the Vignette page  which give more details about the datasets and functions in this package. 
-- **Function Documentation**: All functions are exported in this package have some form of documentation.
-- **Examples**: All exported examples in R help can run successfully.  
+- **Installation instructions: ** Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.
+- **Vignette(s) : ** By using `pkgdown` site,the vignette page  which give more details about the datasets and functions in this package. 
+- **Function Documentation: ** All exported functions in R help with nice documentation.  
+- **Examples: ** All exported examples in R help can run successfully.  
 
 #### Functionality
 
-- [✔] **Installation**: Installation succeeds as documented. 
-- [✔] **Functionality**: Any functional claims of the software been confirmed.   
-- [✔] **Automated tests**: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
+- [✔] **Installation: ** Installation succeeds as documented. 
+- [✔] **Functionality: ** Any functional claims of the software been confirmed.   
+- [✔] **Automated tests: ** Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
 
 
 #### Comments
 
-- **Installation :** The `covid19dashboard` package could be able to be installed into R without any errors.  
-- **Functionality :** All functions can be called in the built-in Shiny app.  
-- **Automated tests :** All tests pass on the local machine without any errors.
+- **Installation: ** The `covid19dashboard` package could be able to be installed into R without any errors.  
+- **Functionality: ** All functions can be called in the built-in Shiny app.  
+- **Automated tests: ** All tests pass on the local machine without any errors.
 
 Estimated hours spent reviewing:
 

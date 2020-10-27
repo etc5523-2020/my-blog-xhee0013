@@ -1008,8 +1008,7 @@ date_range (covid_raw,date_col = &quot;date&quot;,1)</code></pre>
 <p>In addition, the graph with the number of visitors change since the pandemic which would changed in plotly style, providing more interactive information for the users selection. For example, when selecting the Japan workplace, transit station and residential,users could visualize directly about the number of visitors change based on pandemic instead of only showing the time series trend, which could know more about the specific information such as how many visitors in the lowest point in these industry.</p>
 <p>Furthermore,the presentation of the <code>summary table</code> should be followed the guideline such as left justify text, right justify numbers.</p>
 <p><strong>Documentation improvements</strong></p>
-<p>In this package, there is enough documentation to provide the information of how to use the package and what would be contained in it. For the <code>launch_app</code> function, the documentation is easy to understand and could be reproduced the shiny app. However, the <code>shiny_note</code> function has more ambiguous argument in the function input and users would not know about how to use the function until see the example. The better way would be added the text parameter instead of using period(.). Further, the <code>Vignette</code></p>
-<p>Elaborating on what is being plotting in the stringency function could be included as users will not know what the function does until running the application. Further, the <code>input</code> argument description is a bit vague, this argument can be left out as there is actually no argument needed to run the function. Providing an example for the interact function could be included to better help users understand how to use the function.</p>
+<p>In this package, there is enough documentation to provide the information of how to use the package and what would be contained in it. For the <code>launch_app</code> function, the documentation is easy to understand and could be reproduced the shiny app. However, the <code>shiny_note</code> function has more ambiguous argument in the function input and users would not know about how to use the function until see the example. The better way would be added the text parameter instead of using period(<code>.</code>).</p>
 <h2 id="conclusion"><strong>Conclusion</strong></h2>
 <p>By reviewing the <code>covid19dashboard</code> package, I have learned how could I improve my shiny app and give more insightful to build up a package. From the Shiny App, it was interesting to see the number of visitors change because of pandemic compared with different countries across time in different industry. In addition, the trajectory graph with COVID-19 cases presents how the daily new cases change with the increase in the number of different case types, which gives more details in visualization about when the pandemic is getting better. Plotting the time series data in coronavirus, it can give more intuitive to visualize how the coronavirus changed across time in different countries.</p>
 <h2 id="appendix"><strong>Appendix</strong></h2>
@@ -1017,32 +1016,33 @@ date_range (covid_raw,date_col = &quot;date&quot;,1)</code></pre>
 <h4 id="documentation">Documentation</h4>
 <p>The package includes all the following forms of documentation:</p>
 <ul>
-<li><p>[✔] <strong>Installation instructions</strong> for the package in README file.</p></li>
-<li><p>[✔] <strong>Vignette(s)</strong>: demonstrating major functionality that runs successfully locally. By using <code>pkgdown</code> site which give more details about the datasets and functions in this package.</p></li>
-<li><p>[✔] <strong>Function Documentation</strong>: for all exported functions in R help. All functions are exported in this package have some form of documentation.</p></li>
-<li><p>[✔] <strong>Examples</strong>: for all exported functions in R Help that run successfully locally.</p></li>
+<li><p>[✔] <strong>Installation instructions: </strong> For the package in README file.</p></li>
+<li><p>[✔] <strong>Vignette(s): </strong> Demonstrating major functionality that runs successfully locally.</p></li>
+<li><p>[✔] <strong>Function Documentation: </strong> For all exported functions in R help.</p></li>
+<li><p>[✔] <strong>Examples: </strong> For all exported functions in R Help that run successfully locally.</p></li>
 </ul>
 <h4 id="comments">Comments</h4>
 <ul>
-<li><strong>Installation instructions</strong>: Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.</li>
-<li><strong>Vignette(s) </strong>: By using <code>pkgdown</code> site,the Vignette page which give more details about the datasets and functions in this package.</li>
-<li><strong>Function Documentation</strong>: All functions are exported in this package have some form of documentation.</li>
-<li><strong>Examples</strong>: All exported examples in R help can run successfully.</li>
+<li><strong>Installation instructions: </strong> Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.</li>
+<li><strong>Vignette(s) : </strong> By using <code>pkgdown</code> site,the vignette page which give more details about the datasets and functions in this package.</li>
+<li><strong>Function Documentation: </strong> All exported functions in R help with nice documentation.<br />
+</li>
+<li><strong>Examples: </strong> All exported examples in R help can run successfully.</li>
 </ul>
 <h4 id="functionality">Functionality</h4>
 <ul>
-<li>[✔] <strong>Installation</strong>: Installation succeeds as documented.</li>
-<li>[✔] <strong>Functionality</strong>: Any functional claims of the software been confirmed.<br />
+<li>[✔] <strong>Installation: </strong> Installation succeeds as documented.</li>
+<li>[✔] <strong>Functionality: </strong> Any functional claims of the software been confirmed.<br />
 </li>
-<li>[✔] <strong>Automated tests</strong>: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.</li>
+<li>[✔] <strong>Automated tests: </strong> Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.</li>
 </ul>
 <h4 id="comments-1">Comments</h4>
 <ul>
-<li><strong>Installation :</strong> The <code>covid19dashboard</code> package could be able to be installed into R without any errors.<br />
+<li><strong>Installation: </strong> The <code>covid19dashboard</code> package could be able to be installed into R without any errors.<br />
 </li>
-<li><strong>Functionality :</strong> All functions can be called in the built-in Shiny app.<br />
+<li><strong>Functionality: </strong> All functions can be called in the built-in Shiny app.<br />
 </li>
-<li><strong>Automated tests :</strong> All tests pass on the local machine without any errors.</li>
+<li><strong>Automated tests: </strong> All tests pass on the local machine without any errors.</li>
 </ul>
 <p>Estimated hours spent reviewing:</p>
 <ul>
