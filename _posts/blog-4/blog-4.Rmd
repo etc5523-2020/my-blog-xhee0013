@@ -98,13 +98,13 @@ By reviewing the `covid19dashboard` package, I have learned how could I improve 
 
 The package includes all the following forms of documentation:  
 
-- [x] **Installation instructions** for the package in README file.
+- [✔] **Installation instructions** for the package in README file.
 
-- [x] **Vignette(s)**: demonstrating major functionality that runs successfully locally. By using `pkgdown` site which give more details about the datasets and functions in this package.
+- [✔] **Vignette(s)**: demonstrating major functionality that runs successfully locally. By using `pkgdown` site which give more details about the datasets and functions in this package.
 
-- [x] **Function Documentation**: for all exported functions in R help. All functions are exported in this package have some form of documentation.
+- [✔] **Function Documentation**: for all exported functions in R help. All functions are exported in this package have some form of documentation.
 
-- [x] **Examples**: for all exported functions in R Help that run successfully locally.
+- [✔] **Examples**: for all exported functions in R Help that run successfully locally.
 
 #### Comments
 
@@ -115,9 +115,9 @@ The package includes all the following forms of documentation:
 
 #### Functionality
 
-- [x] **Installation**: Installation succeeds as documented. 
-- [x] **Functionality**: Any functional claims of the software been confirmed.   
-- [x] **Automated tests**: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
+- [✔] **Installation**: Installation succeeds as documented. 
+- [✔] **Functionality**: Any functional claims of the software been confirmed.   
+- [✔] **Automated tests**: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
 
 
 #### Comments
@@ -128,7 +128,7 @@ The package includes all the following forms of documentation:
 
 Estimated hours spent reviewing:
 
-- [x] Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.
+- [✔] Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.
 
 ### Review Comments
 
