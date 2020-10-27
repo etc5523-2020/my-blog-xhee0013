@@ -44,12 +44,12 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["R-package review"]},{"type":"character","attributes":{},"value":["This blog post will be talked about the R Package Review - A review of R package 'COVID19dashboard'\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["XITONG HE"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["October 30, 2020"]},{"type":"character","attributes":{},"value":["R Package"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","preview","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["R-package review"]},{"type":"character","attributes":{},"value":["This blog post will be talked about the R Package Review - A review of R package 'COVID19dashboard'\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["XITONG HE"]},{"type":"NULL"}]}]},{"type":"character","attributes":{},"value":["October 30, 2020"]},{"type":"character","attributes":{},"value":["image/lineplot.png"]},{"type":"character","attributes":{},"value":["R Package"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["blog-4_files/bowser-1.9.3/bowser.min.js","blog-4_files/distill-2.2.21/template.v2.js","blog-4_files/jquery-1.11.3/jquery.min.js","blog-4_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["blog-4_files/bowser-1.9.3/bowser.min.js","blog-4_files/distill-2.2.21/template.v2.js","blog-4_files/jquery-1.11.3/jquery.min.js","blog-4_files/webcomponents-2.0.0/webcomponents.js","image/lineplot.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1018,7 +1018,7 @@ date_range (covid_raw,date_col = &quot;date&quot;,1)</code></pre>
 <p>The package includes all the following forms of documentation:</p>
 <ul>
 <li><p><input type="checkbox" disabled="" checked="" />
-<strong>Installation instructions for the package in README file:</strong> Clear instruction and easy to follow how to install and use the package, giving a big picture overview of the package.</p></li>
+<strong>Installation instructions</strong> for the package in README file.</p></li>
 <li><p><input type="checkbox" disabled="" checked="" />
 <strong>Vignette(s)</strong>: demonstrating major functionality that runs successfully locally. By using <code>pkgdown</code> site which give more details about the datasets and functions in this package.</p></li>
 <li><p><input type="checkbox" disabled="" checked="" />
@@ -1026,23 +1026,37 @@ date_range (covid_raw,date_col = &quot;date&quot;,1)</code></pre>
 <li><p><input type="checkbox" disabled="" checked="" />
 <strong>Examples</strong>: for all exported functions in R Help that run successfully locally.</p></li>
 </ul>
+<h4 id="comments">Comments</h4>
+<ul>
+<li><strong>Installation instructions</strong>: Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.</li>
+<li><strong>Vignette(s) </strong>: By using <code>pkgdown</code> site,the Vignette page which give more details about the datasets and functions in this package.</li>
+<li><strong>Function Documentation</strong>: All functions are exported in this package have some form of documentation.</li>
+<li><strong>Examples</strong>: All exported examples in R help can run successfully.</li>
+</ul>
 <h4 id="functionality">Functionality</h4>
 <ul>
 <li><input type="checkbox" disabled="" checked="" />
-<strong>Installation</strong>: Installation succeeds as documented. The <code>covid19dashboard</code> package could be able to be installed into R without any errors.<br />
-</li>
+<strong>Installation</strong>: Installation succeeds as documented.</li>
 <li><input type="checkbox" disabled="" checked="" />
 <strong>Functionality</strong>: Any functional claims of the software been confirmed.<br />
 </li>
 <li><input type="checkbox" disabled="" checked="" />
 <strong>Automated tests</strong>: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.</li>
 </ul>
+<h4 id="comments-1">Comments</h4>
+<ul>
+<li><strong>Installation :</strong> The <code>covid19dashboard</code> package could be able to be installed into R without any errors.<br />
+</li>
+<li><strong>Functionality :</strong> All functions can be called in the built-in Shiny app.<br />
+</li>
+<li><strong>Automated tests :</strong> All tests pass on the local machine without any errors.</li>
+</ul>
 <p>Estimated hours spent reviewing:</p>
 <ul>
 <li><input type="checkbox" disabled="" checked="" />
 Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer (“rev” role) in the package DESCRIPTION file.</li>
 </ul>
-<h4 id="review-comments">Review Comments</h4>
+<h3 id="review-comments">Review Comments</h3>
 <p>The <code>covid19dashboard</code> package has passed all the unit tests of functionality in documentations and has proper vignette website page to introduce more information about this package. In addition, the Shiny App is included in this package by using the <code>launch_app</code> function to run it, which could be displayed successfully about how the COVID-19 pandemic have affected in different countries.</p>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

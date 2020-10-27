@@ -6,6 +6,7 @@ author:
   - name: XITONG HE
     url: 
 date: October 30, 2020
+preview: image/lineplot.png
 categories: 
   - R Package
 output:
@@ -97,7 +98,7 @@ By reviewing the `covid19dashboard` package, I have learned how could I improve 
 
 The package includes all the following forms of documentation:  
 
-- [x] **Installation instructions for the package in README file:** Clear instruction and easy to follow how to install and use the package, giving a big picture overview of the package.
+- [x] **Installation instructions** for the package in README file.
 
 - [x] **Vignette(s)**: demonstrating major functionality that runs successfully locally. By using `pkgdown` site which give more details about the datasets and functions in this package.
 
@@ -105,17 +106,31 @@ The package includes all the following forms of documentation:
 
 - [x] **Examples**: for all exported functions in R Help that run successfully locally.
 
+#### Comments
+
+- **Installation instructions**: Clear instruction in README file and easy to follow how to install and use the package, giving a big picture overview of the package.
+- **Vignette(s) **: By using `pkgdown` site,the Vignette page  which give more details about the datasets and functions in this package. 
+- **Function Documentation**: All functions are exported in this package have some form of documentation.
+- **Examples**: All exported examples in R help can run successfully.  
+
 #### Functionality
 
-- [x] **Installation**: Installation succeeds as documented. The `covid19dashboard` package could be able to be installed into R without any errors.  
+- [x] **Installation**: Installation succeeds as documented. 
 - [x] **Functionality**: Any functional claims of the software been confirmed.   
 - [x] **Automated tests**: Unit tests cover essential functions of the package and a reasonable range of inputs and conditions. All tests pass on the local machine without any errors.
+
+
+#### Comments
+
+- **Installation :** The `covid19dashboard` package could be able to be installed into R without any errors.  
+- **Functionality :** All functions can be called in the built-in Shiny app.  
+- **Automated tests :** All tests pass on the local machine without any errors.
 
 Estimated hours spent reviewing:
 
 - [x] Should the author(s) deem it appropriate, I agree to be acknowledged as a package reviewer ("rev" role) in the package DESCRIPTION file.
 
-#### Review Comments
+### Review Comments
 
 The `covid19dashboard` package has passed all the unit tests of functionality in documentations and has proper vignette website page to introduce more information about this package. In addition, the Shiny App is included in this package by using the `launch_app` function to run it, which could be displayed successfully about how the COVID-19 pandemic have affected in different countries.
 
